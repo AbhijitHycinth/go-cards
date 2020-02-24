@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"games/poker"
 )
 
 func main() {
-	deck := poker.NewDeck()
-	fmt.Println([]string(deck))
+	deck := poker.ReadDeckFromFile("new_file.txt")
+	deck.Print()
 }
