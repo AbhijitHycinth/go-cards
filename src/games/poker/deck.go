@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"games/poker/cards"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 //Deck to represent the deck of cards
@@ -62,4 +64,14 @@ func ReadDeckFromFile(fileName string) Deck {
 	deck := Deck(strings.Split(joinedString, "\n"))
 
 	return deck
+}
+
+//Shuffle method to shuffle deck of cards
+func (d Deck) Shuffle() {
+	rand.Seed(time.Now().UnixNano()) ///Seeding the random number generator to generate new value everytime
+
+	for i := range d {
+		indexToSwap := rand.Intn(len(d) - 1)
+		d[i], d[indexToSwap] = d[indexToSwap], d[i] //Swap cards in a single line
+	}
 }
